@@ -30,7 +30,7 @@ module.exports = function (req, v) {
          values.push(v[f]);
       });
 
-      let sql = `INSERT INTO ${tenantDB}\`AB_RowLog\` 
+      let sql = `INSERT INTO ${tenantDB}\`SITE_ROWLOG\` 
       			  VALUES ("${id}", NOW(), NULL, NULL, ?, ?, ?, ?, ?, NOW()  );`;
 
       req.query(sql, values, (error, results, fields) => {

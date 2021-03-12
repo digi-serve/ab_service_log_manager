@@ -47,7 +47,7 @@ module.exports = function (req, v) {
       }
 
       let sql = `SELECT username, level, record, timestamp 
-                 FROM ${tenantDB}\`AB_RowLog\` 
+                 FROM ${tenantDB}\`SITE_ROWLOG\` 
                  ${WHERE}
                  ORDER BY timestamp 
                  ${LIMIT}`;
