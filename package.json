@@ -6,6 +6,8 @@
   "author": "Johnny Hausman",
   "license": "MIT",
   "dependencies": {
+    "@sentry/node": "^7.10.0",
+    "@sentry/tracing": "^7.10.0",
     "ab-utils": "github:hiro-nakamura/ab-utils",
     "cote": "^1.0.0",
     "lodash": "^4.17.20",
