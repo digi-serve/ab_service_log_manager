@@ -10,9 +10,15 @@
 ## $ docker push digiserve/ab-log-manager:master
 ##
 
-FROM digiserve/service-cli:master
+ARG BRANCH=master
 
-RUN git clone --recursive https://github.com/appdevdesigns/ab_service_log_manager.git app && cd app && npm install
+FROM digiserve/service-cli:${BRANCH}
+
+COPY . /app
+
+WORKDIR /app
+
+RUN npm i -f
 
 WORKDIR /app
 
