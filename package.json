@@ -6,9 +6,9 @@
   "author": "Johnny Hausman",
   "license": "MIT",
   "dependencies": {
+    "@digiserve/ab-utils": "github:digi-serve/ab-utils#master",
     "@sentry/node": "^7.10.0",
     "@sentry/tracing": "^7.10.0",
-    "ab-utils": "github:digi-serve/ab-utils",
     "cote": "^1.0.0",
     "lodash": "^4.17.20",
     "uuid": "^8.3.2"
