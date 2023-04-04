@@ -3,7 +3,7 @@
  * our Request handler.
  */
 const Sentry = require("@sentry/node");
-const AB = require("ab-utils");
+const AB = require("@digiserve/ab-utils");
 const config = AB.config("log_manager");
 
 module.exports = {

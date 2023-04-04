@@ -2,7 +2,7 @@
 // log_manager
 // (AppBuilder) A log manager for various AB operations
 //
-const AB = require("ab-utils");
+const AB = require("@digiserve/ab-utils");
 const Sentry = require("@sentry/node");
 require("@sentry/tracing");
 
