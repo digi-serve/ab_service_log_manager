@@ -32,17 +32,34 @@ module.exports = {
       req.log("log_manager.notification");
       if (config.sentry) {
          const domain = req.param("domain");
-         const { message, stack } = req.param("error");
+
+         // optional error
+         const { message, stack } = req.param("error") || {
+            message: "no message",
+            stack: [],
+         };
          const error = new Error(message);
          error.stack = stack;
-         const { serviceKey, user, ...info } = req.param("info");
-         Sentry.setUser(user);
-         Sentry.captureException(error, {
-            tags: { domain, service: serviceKey },
-            contexts: { info },
-         });
+
+         // Optional Info
+         const { serviceKey, user, ...info } = req.param("info") || {
+            serviceKey: "no key",
+            user: {},
+            no: "info",
+         };
+
+         try {
+            Sentry.setUser(user);
+            Sentry.captureException(error, {
+               tags: { domain, service: serviceKey },
+               contexts: { info },
+            });
+         } catch (e) {
+            req.log("Error sending to Sentry:", e);
+            req.log(req.params());
+         }
       } else {
-         console.log(
+         req.log(
             "System notification received, but Sentry not set up",
             req.params()
          );
