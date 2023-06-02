@@ -3,8 +3,6 @@
  * our Request handler.
  */
 const Sentry = require("@sentry/node");
-const AB = require("@digiserve/ab-utils");
-const config = AB.config("log_manager");
 
 module.exports = {
    /**
@@ -30,7 +28,7 @@ module.exports = {
     */
    fn: function handler(req, cb) {
       req.log("log_manager.notification");
-      if (config.sentry) {
+      if (process.env.SENTRY_ENABLE) {
          const domain = req.param("domain");
 
          // optional error
