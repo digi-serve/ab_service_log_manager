@@ -11,7 +11,7 @@ const controller = AB.controller("log_manager");
 // controller.beforeShutdown((cb)=>{ return cb(/* err */) });
 controller.init();
 
-if (process.env.SENTRY_ENABLE) {
+if (process.env.SENTRY_ENABLED) {
    const config = AB.config("log_manager");
    if (config.sentry) Sentry.init(config.sentry);
 }

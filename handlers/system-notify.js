@@ -28,7 +28,7 @@ module.exports = {
     */
    fn: function handler(req, cb) {
       req.log("log_manager.notification");
-      if (process.env.SENTRY_ENABLE) {
+      if (process.env.SENTRY_ENABLED) {
          const domain = req.param("domain");
 
          // optional error
