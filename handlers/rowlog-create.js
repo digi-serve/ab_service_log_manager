@@ -30,6 +30,7 @@ module.exports = {
     */
    inputValidation: {
       username: { string: true, required: true },
+      usernameReal: { string: { allow: [null] }, optional: true },
       record: { required: true },
       level: { string: true, required: true },
       row: { string: { uuid: true }, required: true },
@@ -74,7 +75,7 @@ module.exports = {
       values.record = JSON.stringify(values.record);
 
       sqlRowLogCreate(req, values)
-         .then((list) => {
+         .then((/*list*/) => {
             cb(null, { status: "success" });
          })
          .catch(cb);
