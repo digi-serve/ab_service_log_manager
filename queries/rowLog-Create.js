@@ -16,7 +16,14 @@ module.exports = function (req, v) {
       // {uuid}
       // This is an AppBuilder Object, so it requires a uuid for each entry.
 
-      var fieldOrder = ["username", "record", "level", "row", "object"];
+      var fieldOrder = [
+         "username",
+         "usernameReal",
+         "record",
+         "level",
+         "row",
+         "object",
+      ];
       // {array}
       // The order of the fields in the DB.  This is the order they must
       // appear in the values[].
@@ -25,15 +32,23 @@ module.exports = function (req, v) {
       // {array}
       // The insert data in the proper field order.
 
+      var placeholders = [];
+      // {array}  [ ?, ?, ... , ?]
+      // The corresponding sql placeholder array for each field in fieldOrder.
+      // There should be a "?" for each field in fieldOrder.
+
       // order the values:
       fieldOrder.forEach((f) => {
          values.push(v[f]);
+         placeholders.push("?");
       });
 
       let sql = `INSERT INTO ${tenantDB}\`SITE_ROWLOG\` ( uuid, created_at, updated_at, properties, timestamp, ${fieldOrder.join(
          ", "
       )})
-      			  VALUES ("${id}", NOW(), NULL, NULL, NOW(), ?, ?, ?, ?, ? );`;
+      			  VALUES ("${id}", NOW(), NULL, NULL, NOW(), ${placeholders.join(
+         ", "
+      )} );`;
 
       req.query(sql, values, (error, results, fields) => {
          if (error) {
