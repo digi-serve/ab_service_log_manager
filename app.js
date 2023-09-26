@@ -3,8 +3,12 @@
 // (AppBuilder) A log manager for various AB operations
 //
 const AB = require("@digiserve/ab-utils");
-const Sentry = require("@sentry/node");
-require("@sentry/tracing");
+const { version } = require("./package");
+
+AB.initSetry({
+   dsn: "https://2c6d39a4a232e87591840bcf3d8ca948@o144358.ingest.sentry.io/4505945305120768",
+   release: version,
+});
 
 const controller = AB.controller("log_manager");
 // controller.afterStartup((cb)=>{ return cb(/* err */) });

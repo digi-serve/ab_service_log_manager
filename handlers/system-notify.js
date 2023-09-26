@@ -28,40 +28,15 @@ module.exports = {
     */
    fn: function handler(req, cb) {
       req.log("log_manager.notification");
-      if (process.env.SENTRY_ENABLED) {
-         const domain = req.param("domain");
-
-         // optional error
-         const { message, stack } = req.param("error") || {
-            message: "no message",
-            stack: [],
-         };
-         const error = new Error(message);
-         error.stack = stack;
-
-         // Optional Info
-         const { serviceKey, user, ...info } = req.param("info") || {
-            serviceKey: "no key",
-            user: {},
-            no: "info",
-         };
-
-         try {
-            Sentry.setUser(user);
-            Sentry.captureException(error, {
-               tags: { domain, service: serviceKey },
-               contexts: { info },
-            });
-         } catch (e) {
-            req.log("Error sending to Sentry:", e);
-            req.log(req.params());
-         }
-      } else {
-         req.log(
-            "System notification received, but Sentry not set up",
-            req.params()
-         );
-      }
+      req.log(
+         "log_manager.notification has been depreciated, please update ab-utils",
+         req.params(),
+      );
+      req.notify(
+         "developer",
+         "log_manager.notification (depreciated) recieved an error",
+         req.params(),
+      );
       cb();
    },
 };
