@@ -29,12 +29,7 @@ module.exports = {
    fn: function handler(req, cb) {
       req.log("log_manager.notification");
       req.log(
-         "log_manager.notification has been depreciated, please update ab-utils",
-         req.params(),
-      );
-      req.notify(
-         "developer",
-         "log_manager.notification (depreciated) recieved an error",
+         "log_manager.notification recieved",
          req.params(),
       );
       cb();
