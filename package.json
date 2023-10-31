@@ -1,6 +1,6 @@
 {
   "name": "log_manager",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "(AppBuilder) A log manager for various AB operations",
   "main": "app.js",
   "author": "Johnny Hausman",
