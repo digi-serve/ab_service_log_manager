@@ -29,6 +29,7 @@ module.exports = {
     * }
     */
    inputValidation: {
+      uuid: { string: { uuid: true }, optional: true },
       username: { string: true, required: true },
       usernameReal: { string: { allow: [null] }, optional: true },
       record: { required: true },

@@ -12,7 +12,7 @@ module.exports = function (req, v) {
 
       tenantDB += ".";
 
-      var id = uuid.v4();
+      var id = v["uuid"] ?? uuid.v4();
       // {uuid}
       // This is an AppBuilder Object, so it requires a uuid for each entry.
 
